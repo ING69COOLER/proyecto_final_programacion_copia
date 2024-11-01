@@ -65,7 +65,8 @@ public class MenuPrincipalController extends AMenuPrincipal  {
     // Método para cargar los eventos desde la base de datos
     @FXML
     private void cargarEventos() {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
 
         try {
             Connection con = DriverManager.getConnection(url);
@@ -139,7 +140,8 @@ public class MenuPrincipalController extends AMenuPrincipal  {
     }
 
     public void actualizarResumenSillas() {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
 
         try (Connection con = DriverManager.getConnection(url);
                 Statement stmt = con.createStatement();

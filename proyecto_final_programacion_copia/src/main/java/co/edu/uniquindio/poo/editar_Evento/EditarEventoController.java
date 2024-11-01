@@ -63,7 +63,8 @@ public class EditarEventoController extends BaseEditarEventoController  {
 
     public void cargarDatosEvento(int idEvento) {
         this.idEvento = idEvento;
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         
         try (Connection con = DriverManager.getConnection(url)) {
             cargarDetallesEvento(con);

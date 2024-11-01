@@ -34,7 +34,8 @@ public abstract class BaseEditarEventoController {
     protected ToggleGroup toggleGroupSillas = new ToggleGroup();
 
     protected Connection connectDatabase() throws SQLException {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         return DriverManager.getConnection(url);
     }
 

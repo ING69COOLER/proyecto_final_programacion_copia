@@ -24,7 +24,8 @@ public class DBUtils {
 
     // Métodos para las operaciones en la base de datos
     public void agregarEvento(String nombre, int costo, String tipo, double porcentajeExtra) {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         String query = "INSERT INTO Evento (Nombre, Costo, Tipo, porcentaje_extra) VALUES (?, ?, ?, ?)";
 
         try (Connection con = DriverManager.getConnection(url);
@@ -46,7 +47,8 @@ public class DBUtils {
     }
 
     public void agregarUsuarios(String user, String password) {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         String query = "INSERT INTO Usuarios (user, password) VALUES (?, ?)";
     
         try (Connection con = DriverManager.getConnection(url);
@@ -66,7 +68,8 @@ public class DBUtils {
     }
 
     public void agregarPersona(int idEvento, int idSilla, String tipoSilla, String nombrePersona, int idPersona, int totalPagar) {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         String query = "INSERT INTO persona (id_evento, id_silla, ntipo_silla, nombre_persona, id_persona, total_pagar) VALUES (?, ?, ?, ?, ?, ?)";
     
         try (Connection con = DriverManager.getConnection(url);

@@ -135,7 +135,8 @@ public abstract class AMenuPrincipal implements Utils {
    
     // Eliminar las personas asociadas y el evento de la base de datos
     protected boolean eliminarPersonasYEvento(String nombreEvento) {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
 
         try (Connection con = DriverManager.getConnection(url)) {
             // Primero eliminar las personas relacionadas con el evento

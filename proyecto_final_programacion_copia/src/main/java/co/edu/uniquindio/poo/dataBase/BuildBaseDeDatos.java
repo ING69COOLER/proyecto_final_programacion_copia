@@ -12,7 +12,8 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
 
     // Método para crear la tabla "persona" si no existe
     public  void crearTablasUsuarios() {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         try {
             // Conectar a la base de datos
             Connection con = DriverManager.getConnection(url);
@@ -36,7 +37,8 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
     }
 
     public void crearTablaEvento() {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
 
         try {
             Connection con = DriverManager.getConnection(url);
@@ -60,7 +62,8 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
     }
 
     public  void crearTablaPersonas() {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
 
         try {
             Connection con = DriverManager.getConnection(url);
@@ -86,7 +89,7 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
     }
 
     public  void crearSillasVip() {
-    String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
 
     try (Connection con = DriverManager.getConnection(url);
          Statement smt = con.createStatement()) {
@@ -129,7 +132,8 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
 }
 
     public  void crearSillas() {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
 
         try (Connection con = DriverManager.getConnection(url);
             Statement smt = con.createStatement()) {

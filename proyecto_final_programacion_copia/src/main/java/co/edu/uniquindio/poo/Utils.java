@@ -18,7 +18,8 @@ public  interface  Utils {
     }
 
     public default  boolean usuarioExiste(String usuario) {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+                String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         String query = "SELECT * FROM Usuarios WHERE user = ?";
 
         try (Connection con = DriverManager.getConnection(url);
@@ -39,7 +40,8 @@ public  interface  Utils {
     }
 
     public default  boolean verificarClave(String usuario, String clave) {
-        String url = "jdbc:sqlite:src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+                String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+
         boolean coincide = false; // Variable para almacenar el resultado
 
         try {
