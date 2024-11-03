@@ -138,5 +138,5 @@ public abstract class BaseEditarEventoController {
     }
 
     
-    protected abstract boolean idPersonaAsignadaEvento(Connection con) throws SQLException;
+    protected abstract boolean idPersonaAsignadaEvento() ;
 }

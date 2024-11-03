@@ -3,11 +3,15 @@ package co.edu.uniquindio.poo.editar_Evento;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import co.edu.uniquindio.poo.Objetos.Persona;
+import co.edu.uniquindio.poo.Proxy.ProxyPersonas;
+import co.edu.uniquindio.poo.dataBase.DBUtils;
 
 public class EditarEventoController extends BaseEditarEventoController  {
 
@@ -18,13 +22,13 @@ public class EditarEventoController extends BaseEditarEventoController  {
 
 
     @FXML
-    private void guardarCliente() {
-        try (Connection con = connectDatabase()) {
-            if (idPersonaAsignadaEvento(con)) {
+    private void guardarCliente() throws SQLException {
+        
+            if (idPersonaAsignadaEvento()) {
                 System.out.println("Error: El id_persona ya está asignado a este evento. No se puede duplicar.");
                 return;
             }
-
+            
             int idSilla;
             String tipoSilla;
             try {
@@ -35,31 +39,30 @@ public class EditarEventoController extends BaseEditarEventoController  {
                 return;
             }
 
-            if (combinacionSillaYaAsignada(con, idSilla, tipoSilla)) {
+            if (isSillaAsignada(idSilla, tipoSilla)) {
                 System.out.println("Error: La combinación de evento, silla y tipo ya está asignada.");
                 return;
             }
 
-            insertarCliente(con, idSilla, tipoSilla);
+            insertarCliente( idSilla, tipoSilla);
             cerrarVentana();
-        } catch (Exception e) {
-            System.out.println("Error al guardar el cliente: " + e.getMessage());
-            e.printStackTrace();
-        }
+       
     }
-
+    //si el id_persona ya esta asignado a este evento, no se puede duplicar, metodo del controlador
     @Override
-    protected boolean idPersonaAsignadaEvento(Connection con) throws SQLException {
-        String queryCheckIdEvento = "SELECT COUNT(*) FROM persona WHERE id_persona = ? AND id_evento = ?";
-        try (PreparedStatement psCheckIdEvento = con.prepareStatement(queryCheckIdEvento)) {
-            psCheckIdEvento.setInt(1, Integer.parseInt(txtIdPersona.getText()));
-            psCheckIdEvento.setInt(2, idEvento);
-            try (ResultSet rsCheckIdEvento = psCheckIdEvento.executeQuery()) {
-                rsCheckIdEvento.next();
-                return rsCheckIdEvento.getInt(1) > 0;
-            }
+    protected boolean idPersonaAsignadaEvento() {
+    ArrayList<Persona> personas = ProxyPersonas.getInstance().getPersonas();
+    int id_persona_asignado = Integer.parseInt(txtIdPersona.getText());
+
+    for (Persona persona : personas) {
+        if (persona.getIdPersona() == id_persona_asignado) {
+            System.out.println("Error: El id_persona ya está asignado a este evento. No se puede duplicar.");
+            return true;  
+           
         }
     }
+    return false;  
+}
 
     public void cargarDatosEvento(int idEvento) {
         this.idEvento = idEvento;
@@ -99,20 +102,19 @@ public class EditarEventoController extends BaseEditarEventoController  {
         throw new IllegalStateException("Error: No se ha seleccionado ninguna silla.");
     }
 
-    private boolean combinacionSillaYaAsignada(Connection con, int idSilla, String tipoSilla) throws SQLException {
-        String queryCheck = "SELECT COUNT(*) FROM persona WHERE id_evento = ? AND id_silla = ? AND tipo_silla = ?";
-        try (PreparedStatement psCheck = con.prepareStatement(queryCheck)) {
-            psCheck.setInt(1, idEvento);
-            psCheck.setInt(2, idSilla);
-            psCheck.setString(3, tipoSilla);
-            try (ResultSet rsCheck = psCheck.executeQuery()) {
-                rsCheck.next();
-                return rsCheck.getInt(1) > 0;
-            }
+   private boolean isSillaAsignada( int idSilla, String tipoSilla) {
+    ArrayList<Persona> personas = ProxyPersonas.getInstance().getPersonas();
+    for (Persona persona : personas) {
+        if (persona.getIdSilla() == idSilla && persona.getTipoSilla() == tipoSilla && persona.getIdEvento() == idEvento) {
+            return true;
         }
     }
+    return false;
+    
+}
 
-    private void insertarCliente(Connection con, int idSilla, String tipoSilla) throws SQLException {
+
+    private void insertarCliente( int idSilla, String tipoSilla)  {
         String idPersonaText = txtIdPersona.getText().trim();
         String nombrePersona = txtNombrePersona.getText().trim();
     
@@ -129,17 +131,9 @@ public class EditarEventoController extends BaseEditarEventoController  {
     
         int idPersona = Integer.parseInt(idPersonaText); // Conversión segura después de la verificación
         double totalPagar = calcularTotalPagar();
+        
+        DBUtils.getInstancia().agregarPersona(new Persona(idEvento, nombrePersona, idPersona, idSilla, tipoSilla, totalPagar));
     
-        String queryInsert = "INSERT INTO persona (id_persona, nombre_persona, id_evento, id_silla, tipo_silla, total_pagar) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement psInsert = con.prepareStatement(queryInsert)) {
-            psInsert.setInt(1, idPersona);
-            psInsert.setString(2, nombrePersona);
-            psInsert.setInt(3, idEvento);
-            psInsert.setInt(4, idSilla);
-            psInsert.setString(5, tipoSilla);
-            psInsert.setDouble(6, totalPagar);
-            psInsert.executeUpdate();
-        }
     }
     
 

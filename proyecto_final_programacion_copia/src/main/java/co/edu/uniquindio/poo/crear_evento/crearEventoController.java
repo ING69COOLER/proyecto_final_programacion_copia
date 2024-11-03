@@ -5,13 +5,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.Utils;
 import co.edu.uniquindio.poo.dataBase.DBUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
-public class crearEventoController {
+public class crearEventoController implements Utils {
 
     @FXML
     private ResourceBundle resources;
@@ -55,6 +56,7 @@ public class crearEventoController {
             } else if (chc_partido.isSelected()) {
                 tipoEvento = "Partido";
             }
+            int id = 1;
 
             // Validar que se haya seleccionado un tipo de evento
             if (tipoEvento.isEmpty()) {
@@ -63,7 +65,7 @@ public class crearEventoController {
             }
 
             // Agregar el evento a la base de datos
-            DBUtils.getInstancia().agregarEvento(nombre, costo, tipoEvento, porcentajeExtra);
+            crearEvento(id,nombre, costo, tipoEvento, porcentajeExtra);
 
             // Redirigir al menú principal
             App.setRoot("menu_principal");

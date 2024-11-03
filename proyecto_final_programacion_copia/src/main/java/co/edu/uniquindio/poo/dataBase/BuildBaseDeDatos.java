@@ -184,6 +184,10 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
         crearTablasUsuarios();
     }
 
+    
+    /*
+     * Singleton
+     */
     public static BuildBaseDeDatos getInstancia() {
         if (instancia == null) {
             instancia = new BuildBaseDeDatos();

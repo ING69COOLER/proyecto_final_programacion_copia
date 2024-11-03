@@ -6,9 +6,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.Objetos.Evento;
+import co.edu.uniquindio.poo.Proxy.ProxyEvento;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -65,17 +68,10 @@ public class MenuPrincipalController extends AMenuPrincipal  {
     // Método para cargar los eventos desde la base de datos
     @FXML
     private void cargarEventos() {
-        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
-
-
-        try {
-            Connection con = DriverManager.getConnection(url);
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Evento");
-
-            while (rs.next()) {
-                String nombreEvento = rs.getString("Nombre");
-                int idEvento = rs.getInt("Id");
+        ArrayList<Evento> eventos = ProxyEvento.getInstance().getEventos();
+       for (Evento evento : eventos) {
+                String nombreEvento = evento.getNombre();
+                int idEvento = evento.getId();
 
                 // Crear un botón para cada evento
                 Button eventoBtn = new Button(nombreEvento);
@@ -96,14 +92,6 @@ public class MenuPrincipalController extends AMenuPrincipal  {
                 // Agregar el botón al VBox
                 vboxEventos.getChildren().add(eventoBtn);
             }
-
-            stmt.close();
-            con.close();
-
-        } catch (Exception e) {
-            System.out.println("Error al cargar los eventos: " + e);
-        }
-
     }
 
     

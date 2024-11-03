@@ -3,11 +3,8 @@ package co.edu.uniquindio.poo.registro;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.Utils;
-import co.edu.uniquindio.poo.dataBase.DBUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -37,8 +34,11 @@ public class RegistroController implements Utils {
 
     @FXML
     private TextField txt_usuario;
-
+    
     @FXML
+    /*
+     * Registrar Usuario
+     */
     private void registar() throws IOException {
         String usuario = txt_usuario.getText();
         String clave = txt_clave_empresarial.getText();
@@ -52,7 +52,7 @@ public class RegistroController implements Utils {
                 System.out.println("El usuario ya existe. Intenta con otro nombre de usuario.");
             } else {
                 // Agregar el usuario a la base de datos
-                DBUtils.getInstancia().agregarUsuarios(usuario, contraseña1);//Modificar para enviar objeto completo :)
+               crearUsuario(usuario, contraseña1);//Modificar para enviar objeto completo :)
 
                 //bandera 1
                 System.out.println("Usuario registrado exitosamente.");
@@ -69,5 +69,7 @@ public class RegistroController implements Utils {
     void regresar() throws IOException {
         App.setRoot("inicio_Sesion");
     }
+
+    
 
 }
