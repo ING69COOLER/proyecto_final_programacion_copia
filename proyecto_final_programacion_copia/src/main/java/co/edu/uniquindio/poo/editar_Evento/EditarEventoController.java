@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import co.edu.uniquindio.poo.Objetos.Persona;
-import co.edu.uniquindio.poo.Proxy.ProxyPersonas;
+import co.edu.uniquindio.poo.Proxy.ProxyPersona;
 import co.edu.uniquindio.poo.dataBase.DBUtils;
 
 public class EditarEventoController extends BaseEditarEventoController  {
@@ -51,11 +51,11 @@ public class EditarEventoController extends BaseEditarEventoController  {
     //si el id_persona ya esta asignado a este evento, no se puede duplicar, metodo del controlador
     @Override
     protected boolean idPersonaAsignadaEvento() {
-    ArrayList<Persona> personas = ProxyPersonas.getInstance().getPersonas();
+    ArrayList<Persona> personas = ProxyPersona.getInstance().getPersonas();
     int id_persona_asignado = Integer.parseInt(txtIdPersona.getText());
 
     for (Persona persona : personas) {
-        if (persona.getIdPersona() == id_persona_asignado) {
+        if (persona.getIdPersona() == id_persona_asignado && persona.getIdEvento() == idEvento) {
             System.out.println("Error: El id_persona ya está asignado a este evento. No se puede duplicar.");
             return true;  
            
@@ -103,7 +103,7 @@ public class EditarEventoController extends BaseEditarEventoController  {
     }
 
    private boolean isSillaAsignada( int idSilla, String tipoSilla) {
-    ArrayList<Persona> personas = ProxyPersonas.getInstance().getPersonas();
+    ArrayList<Persona> personas = ProxyPersona.getInstance().getPersonas();
     for (Persona persona : personas) {
         if (persona.getIdSilla() == idSilla && persona.getTipoSilla() == tipoSilla && persona.getIdEvento() == idEvento) {
             return true;

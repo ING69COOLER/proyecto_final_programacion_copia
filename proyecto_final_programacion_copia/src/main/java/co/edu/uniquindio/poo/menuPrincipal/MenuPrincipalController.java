@@ -50,7 +50,8 @@ public class MenuPrincipalController extends AMenuPrincipal  {
 
     // Método para abrir la ventana de balance
     @FXML
-    void abrir_ventana_balance(ActionEvent event) {
+    void abrir_ventana_balance() throws IOException {
+        App.setRoot("balance");
     }
 
     // Método para cambiar a la ventana de inicio de sesión

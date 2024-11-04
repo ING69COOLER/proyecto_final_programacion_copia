@@ -28,10 +28,10 @@ public  interface  Utils {
         for (Usuario user : usuarios) {
             // Verificar si el usuario existe en la lista de usuarios
             if (user.getUsuario().equals(usuario)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public default  boolean verificarClave(String usuario, String clave) {

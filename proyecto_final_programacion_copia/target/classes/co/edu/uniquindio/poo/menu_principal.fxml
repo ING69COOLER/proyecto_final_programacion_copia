@@ -8,27 +8,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="519.0" prefWidth="613.0" spacing="20.0" style="-fx-background-color: #F5F5DC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.menuPrincipal.MenuPrincipalController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="773.0" spacing="20.0" style="-fx-background-color: #F5F5DC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.menuPrincipal.MenuPrincipalController">
    <children>
       <AnchorPane prefHeight="119.0" prefWidth="574.0" style="-fx-background-color: #F5F5DC;">
          <children>
             <Button fx:id="primaryButton" layoutX="14.0" layoutY="10.0" onAction="#switchToSecondary" styleClass="buttonRed" stylesheets="@styles.css" text="Cerrar Sesion" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true" />
-            <Label layoutX="221.0" layoutY="-7.0" prefHeight="42.0" prefWidth="131.0" text="Menu Principal" textAlignment="RIGHT" textFill="#0b1cb4" textOverrun="CLIP">
+            <Label layoutX="309.0" layoutY="-7.0" prefHeight="42.0" prefWidth="131.0" text="Menu Principal" textAlignment="RIGHT" textFill="#0b1cb4" textOverrun="CLIP">
                <font>
                   <Font name="Forte" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="btn_agregar_avento" layoutX="147.0" layoutY="57.0" mnemonicParsing="false" onAction="#ventana_agregar_evento" prefHeight="26.0" prefWidth="280.0" stylesheets="@styles.css" text="Agregar Evento">
+            <Button fx:id="btn_agregar_avento" layoutX="221.0" layoutY="53.0" mnemonicParsing="false" onAction="#ventana_agregar_evento" prefHeight="26.0" prefWidth="280.0" stylesheets="@styles.css" text="Agregar Evento">
                <font>
                   <Font name="Forte" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btn_balance" layoutX="454.4" layoutY="10.0" mnemonicParsing="false" onAction="#abrir_ventana_balance" prefHeight="40.0" prefWidth="102.0" styleClass="buttonblue" stylesheets="@styles.css" text="Balance" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="454.0" AnchorPane.topAnchor="10.0">
+            <Button fx:id="btn_balance" layoutX="617.0" layoutY="3.0" mnemonicParsing="false" onAction="#abrir_ventana_balance" prefHeight="40.0" prefWidth="102.0" styleClass="buttonblue" stylesheets="@styles.css" text="Balance" AnchorPane.bottomAnchor="89.80000000000001" AnchorPane.leftAnchor="617.0" AnchorPane.topAnchor="3.0">
                <font>
                   <Font name="Forte" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btn_eliminar_evento" layoutX="147.0" layoutY="106.0" mnemonicParsing="false" onAction="#eliminar_evento" prefHeight="26.0" prefWidth="280.0" styleClass="buttonRed" stylesheets="@styles.css" text="Eliminar Evento">
+            <Button fx:id="btn_eliminar_evento" layoutX="221.0" layoutY="106.0" mnemonicParsing="false" onAction="#eliminar_evento" prefHeight="26.0" prefWidth="280.0" styleClass="buttonRed" stylesheets="@styles.css" text="Eliminar Evento">
                <font>
                   <Font name="Forte" size="15.0" />
                </font>
@@ -39,17 +39,17 @@
       <!-- Sección donde se mostrará el resumen de sillas -->
       <AnchorPane prefHeight="334.0" prefWidth="574.0">
          <children>
-            <VBox fx:id="vboxResumen" alignment="CENTER" layoutX="14.0" layoutY="20.0" prefHeight="300.0" prefWidth="241.0" spacing="10.0">
+            <VBox fx:id="vboxResumen" alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="300.0" prefWidth="364.0" spacing="10.0">
                <Label fx:id="labelResumen" style="-fx-font-weight: bold;" text="Resumen de Sillas">
                   <font>
                      <Font name="Forte" size="18.0" />
                   </font></Label>
-               <TextArea fx:id="labelSillasLibres" editable="false" prefHeight="200.0" prefWidth="300.0" wrapText="true" />
+               <TextArea fx:id="labelSillasLibres" editable="false" prefHeight="200.0" prefWidth="291.0" wrapText="true" />
 
             </VBox>
 
             <!-- Sección donde se mostrarán los botones de los eventos -->
-            <VBox fx:id="vboxEventos" alignment="CENTER" layoutX="287.0" layoutY="20.0" prefHeight="300.0" prefWidth="280.0" spacing="10.0" />
+            <VBox fx:id="vboxEventos" alignment="CENTER" layoutX="421.0" layoutY="10.0" prefHeight="300.0" prefWidth="280.0" spacing="10.0" />
          </children>
       </AnchorPane>
    </children>

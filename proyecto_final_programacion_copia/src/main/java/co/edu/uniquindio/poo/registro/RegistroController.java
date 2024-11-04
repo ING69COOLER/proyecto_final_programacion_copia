@@ -40,6 +40,7 @@ public class RegistroController implements Utils {
      * Registrar Usuario
      */
     private void registar() throws IOException {
+        // obtiene de los labels
         String usuario = txt_usuario.getText();
         String clave = txt_clave_empresarial.getText();
         String contraseña1 = txt_contraseña_1.getText();
