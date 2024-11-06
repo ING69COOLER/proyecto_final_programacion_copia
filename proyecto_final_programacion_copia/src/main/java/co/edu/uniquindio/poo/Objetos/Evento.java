@@ -1,11 +1,11 @@
 package co.edu.uniquindio.poo.Objetos;
 
 public class Evento {
-    int id;
-    String nombre;
-    int costo;
-    String tipo;
-    double porcentajeExtra;
+    public int id;
+    public String nombre;
+    public int costo;
+    public String tipo;
+    public double porcentajeExtra;
 
     public Evento(int id, String nombre, int costo, String tipo, double porcentajeExtra) {
         this.id = id;

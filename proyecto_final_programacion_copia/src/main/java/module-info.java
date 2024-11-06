@@ -6,8 +6,10 @@ module co.edu.uniquindio.poo {
     requires javafx.graphics;
     requires com.opencsv;
     requires org.apache.poi.ooxml;
+    requires com.google.gson;
   
-
+    
+    opens co.edu.uniquindio.poo.Objetos to com.google.gson;
     // Abre los paquetes necesarios para JavaFX
     opens co.edu.uniquindio.poo to javafx.fxml;
     opens co.edu.uniquindio.poo.inicioSesion to javafx.fxml;

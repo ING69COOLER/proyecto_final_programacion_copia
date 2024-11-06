@@ -1,12 +1,12 @@
 package co.edu.uniquindio.poo.Objetos;
 
 public class Persona {
-    private int idPersona;
-    private String nombrePersona;
-    private int idEvento;
-    private int idSilla;
-    private String tipoSilla;
-    private double totalPagar;
+    public int idPersona;
+    public String nombrePersona;
+    public int idEvento;
+    public int idSilla;
+    public String tipoSilla;
+    public double totalPagar;
 
     public Persona(int idPersona, String nombrePersona, int idEvento, int idSilla, String tipoSilla, double totalPagar) {
         this.idPersona = idPersona;
