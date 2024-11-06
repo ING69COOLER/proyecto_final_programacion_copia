@@ -10,83 +10,7 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
 
     private static BuildBaseDeDatos instancia;
 
-    // Método para crear la tabla "persona" si no existe
-    public  void crearTablasUsuarios() {
-               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
-
-        try {
-            // Conectar a la base de datos
-            Connection con = DriverManager.getConnection(url);
-            Statement smt = con.createStatement();
-
-            // Crear la tabla solo si no existe, sin insertar datos
-            smt.executeUpdate("CREATE TABLE IF NOT EXISTS Usuarios (" +
-                    "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
-                    "user TEXT NOT NULL, " +
-                    "password TEXT NOT NULL);");
-
-            // Cerrar la conexión
-            smt.close();
-            con.close();
-
-            System.out.println("Tabla creada exitosamente (si no existía).");
-
-        } catch (Exception e) {
-            System.out.println("Error al crear la tabla: " + e);
-        }
-    }
-
-    public void crearTablaEvento() {
-               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
-
-
-        try {
-            Connection con = DriverManager.getConnection(url);
-            Statement smt = con.createStatement();
-
-            smt.executeUpdate("CREATE TABLE \"Evento\" (\r\n" + //
-                    "\t\"Id\"\tINTEGER NOT NULL UNIQUE,\r\n" + //
-                    "\t\"Nombre\"\tTEXT NOT NULL,\r\n" + //
-                    "\t\"Costo\"\tINTEGER NOT NULL,\r\n" + //
-                    "\t\"Tipo\"\tTEXT NOT NULL,\r\n" + //
-                    "\t\"porcentaje_extra\"\tREAL NOT NULL,\r\n" + //
-                    "\tPRIMARY KEY(\"Id\" AUTOINCREMENT)\r\n" + //
-                    ");");
-            smt.close();
-            con.close();
-
-            System.out.println("Tabla creada exitosamente (si no existía).");
-        } catch (Exception e) {
-            System.out.println("Error al crear la tabla: " + e);
-        }
-    }
-
-    public  void crearTablaPersonas() {
-               String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
-
-
-        try {
-            Connection con = DriverManager.getConnection(url);
-            Statement smt = con.createStatement();
-
-            smt.executeUpdate("CREATE TABLE \"persona\" (\r\n" + //
-                    "\t\"id\"\tINTEGER NOT NULL UNIQUE,\r\n" + //
-                    "\t\"id_evento\"\tINTEGER NOT NULL ,\r\n" + //
-                    "\t\"id_silla\"\tINTEGER NOT NULL ,\r\n" + //
-                    "\t\"tipo_silla\"\tTEXT NOT NULL ,\r\n" + //
-                    "\t\"nombre_persona\"\tTEXT NOT NULL,\r\n" + //
-                    "\t\"id_persona\"\tINTEGER NOT NULL ,\r\n" + //
-                    "\t\"total_pagar\"\tINTEGER NOT NULL,\r\n" + //
-                    "\tPRIMARY KEY(\"id\")\r\n" + //
-                    ");");
-            smt.close();
-            con.close();
-
-            System.out.println("Tabla creada exitosamente (si no existía).");
-        } catch (Exception e) {
-            System.out.println("Error al crear la tabla: " + e);
-        }
-    }
+    
 
     public  void crearSillasVip() {
         String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
@@ -131,7 +55,7 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
     }
 }
 
-    public  void crearSillas() {
+    public  void crearSillasRegulares() {
                String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
 
 
@@ -176,13 +100,75 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
     }
 
 
-    public void crearTablas(){
-        crearSillas();
-        crearSillasVip();
-        crearTablaEvento();
-        crearTablaPersonas();
-        crearTablasUsuarios();
+    public void crearTablas() {
+        String tablaUsuarios = "CREATE TABLE IF NOT EXISTS usuarios (\r\n" +
+                "\t\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\r\n" +
+                "\t\tuser TEXT NOT NULL,\r\n" +
+                "\t\tpassword TEXT NOT NULL\r\n" +
+                ");";
+    
+        String tablaEvento = "CREATE TABLE IF NOT EXISTS evento (\r\n" +
+                "\t\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\r\n" +
+                "\t\tnombre TEXT NOT NULL,\r\n" +
+                "\t\tcosto INTEGER NOT NULL,\r\n" +
+                "\t\ttipo TEXT NOT NULL,\r\n" +
+                "\t\tporcentaje_extra REAL NOT NULL\r\n" +
+                ");";
+    
+        String tablaPersona = "CREATE TABLE IF NOT EXISTS persona (\r\n" +
+                "\t\tid INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\r\n" +
+                "\t\tid_evento INTEGER NOT NULL,\r\n" +
+                "\t\tid_silla INTEGER NOT NULL,\r\n" +
+                "\t\ttipo_silla TEXT NOT NULL,\r\n" +
+                "\t\tnombre_persona TEXT NOT NULL,\r\n" +
+                "\t\tid_persona INTEGER NOT NULL,\r\n" +
+                "\t\ttotal_pagar INTEGER NOT NULL\r\n" +
+                ");";
+    
+        String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
+        
+        try (Connection con = DriverManager.getConnection(url);
+             Statement smt = con.createStatement()) {
+    
+            // Verificar si las tablas existen
+            boolean usuariosExistente = false;
+            boolean eventoExistente = false;
+            boolean personaExistente = false;
+            
+            // Verificar existencia de cada tabla
+            ResultSet rsUsuarios = smt.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='usuarios';");
+            if (rsUsuarios.next()) {
+                usuariosExistente = true;
+            }
+            
+            ResultSet rsEvento = smt.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='evento';");
+            if (rsEvento.next()) {
+                eventoExistente = true;
+            }
+            
+            ResultSet rsPersona = smt.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='persona';");
+            if (rsPersona.next()) {
+                personaExistente = true;
+            }
+    
+            // Si alguna de las tablas no existe, las creamos
+            if (usuariosExistente && eventoExistente && personaExistente) {
+                System.out.println("Las tablas ya existen.");
+            } else {
+                if (!usuariosExistente) smt.execute(tablaUsuarios);
+                if (!eventoExistente) smt.execute(tablaEvento);
+                if (!personaExistente) smt.execute(tablaPersona);
+                
+                System.out.println("Tablas creadas exitosamente.");
+            }
+            crearSillasRegulares();
+            crearSillasVip();
+            
+        } catch (Exception e) {
+            System.out.println("Error al crear tablas: " + e);
+        }
     }
+    
 
     
     /*

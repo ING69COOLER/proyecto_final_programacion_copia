@@ -44,7 +44,7 @@ public class AdapterExcel implements IExportar {
             e.printStackTrace();
         }
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "C:\\Users\\USUARIO\\Documents\\Manuel\\SEMESTRE_3\\Programacion_2\\proyecto_final_programacion_copia\\proyecto_final_programacion_copia\\proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\Balance\\Excel\\toExcel.py");
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "C:\\Users\\USUARIO\\Documents\\Manuel\\SEMESTRE_3\\Programacion_2\\proyecto_final_programacion_copia\\proyecto_final_programacion_copia\\proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\Balance\\Excel\\Main.py");
 
             processBuilder.inheritIO(); // Para que Python pueda mostrar su salida en la consola de Java
             Process process = processBuilder.start();
