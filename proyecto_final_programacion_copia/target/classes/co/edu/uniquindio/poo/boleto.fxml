@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="412.0" prefWidth="330.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.Boleto.BoletoController">
+   <children>
+      <Pane layoutX="-1.0" layoutY="1.0" prefHeight="412.0" prefWidth="330.0">
+         <children>
+            <Label layoutX="73.0" layoutY="47.0" text="Nombre: ">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="79.0" layoutY="111.0" text="Evento:">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="82.0" text="Cedula:">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="140.0" text="Tipo Silla:">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="183.0" text="Total:">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnImprimir" layoutX="114.0" layoutY="246.0" mnemonicParsing="false" onAction="#imprimir" stylesheets="@styles.css" text="Imprimir" />
+            <Button fx:id="btnEliminar" layoutX="115.0" layoutY="313.0" mnemonicParsing="false" onAction="#eliminar" styleClass="buttonRed" stylesheets="@styles.css" text="Eliminar" />
+            <Label fx:id="txtNombre" layoutX="150.0" layoutY="47.0" text="xxxx">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtCedula" layoutX="149.0" layoutY="82.0" text="xxxx">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtEvento" layoutX="149.0" layoutY="111.0" text="xxxx">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtTipoSilla" layoutX="150.0" layoutY="140.0" text="xxxx">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtTotal" layoutX="150.0" layoutY="183.0" text="xxxx">
+               <font>
+                  <Font name="Forte" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

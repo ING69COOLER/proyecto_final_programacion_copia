@@ -124,6 +124,16 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
                 "\t\tid_persona INTEGER NOT NULL,\r\n" +
                 "\t\ttotal_pagar INTEGER NOT NULL\r\n" +
                 ");";
+
+        String tablaBoleto = "CREATE TABLE IF NOT EXISTS boleto (\r\n" + 
+                "\t\"id\" INTEGER NOT NULL UNIQUE,\r\n" + 
+                "\t\"nombre\" TEXT NOT NULL,\r\n" + 
+                "\t\"nombre_evento\" TEXT NOT NULL,\r\n" + 
+                "\t\"id_persona\" INTEGER NOT NULL,\r\n" + 
+                "\t\"id_evento\" INTEGER NOT NULL,\r\n" + 
+                "\tPRIMARY KEY(\"id\" AUTOINCREMENT)\r\n" + 
+                ");";
+
     
         String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
         
@@ -134,6 +144,7 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
             boolean usuariosExistente = false;
             boolean eventoExistente = false;
             boolean personaExistente = false;
+            boolean boletoExistente = false;
             
             // Verificar existencia de cada tabla
             ResultSet rsUsuarios = smt.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='usuarios';");
@@ -150,6 +161,11 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
             if (rsPersona.next()) {
                 personaExistente = true;
             }
+
+            ResultSet rsBoleto = smt.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='boleto';");
+            if (rsBoleto.next()) {
+                boletoExistente = true;
+            }
     
             // Si alguna de las tablas no existe, las creamos
             if (usuariosExistente && eventoExistente && personaExistente) {
@@ -158,6 +174,7 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
                 if (!usuariosExistente) smt.execute(tablaUsuarios);
                 if (!eventoExistente) smt.execute(tablaEvento);
                 if (!personaExistente) smt.execute(tablaPersona);
+                if (!boletoExistente) smt.execute(tablaBoleto);
                 
                 System.out.println("Tablas creadas exitosamente.");
             }

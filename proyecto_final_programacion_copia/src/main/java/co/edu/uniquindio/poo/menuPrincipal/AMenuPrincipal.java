@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import co.edu.uniquindio.poo.Utils;
-import co.edu.uniquindio.poo.editar_Evento.EditarEventoController;
+import co.edu.uniquindio.poo.editar_Evento.BaseEditarEventoController;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -34,8 +34,9 @@ public abstract class AMenuPrincipal implements Utils {
             Parent root = loader.load();
 
             // Obtener el controlador y pasarle el ID del evento
-            EditarEventoController controller = loader.getController();
+            BaseEditarEventoController controller = loader.getController();
             controller.cargarDatosEvento(idEvento); // Pasar el ID del evento
+            System.out.println("Evento cargado "+idEvento);
 
             // Configurar y mostrar la ventana de edición
             Stage stage = new Stage();
@@ -141,11 +142,19 @@ public abstract class AMenuPrincipal implements Utils {
         try (Connection con = DriverManager.getConnection(url)) {
             // Primero eliminar las personas relacionadas con el evento
             String queryEliminarPersonas = "DELETE FROM persona WHERE id_evento = (SELECT Id FROM Evento WHERE Nombre = ?)";
+            String queryEliminarBoletos = "DELETE FROM boleto WHERE id_evento = (SELECT Id FROM Evento WHERE Nombre = ?)";
             try (PreparedStatement psEliminarPersonas = con.prepareStatement(queryEliminarPersonas)) {
                 psEliminarPersonas.setString(1, nombreEvento);
                 int personasEliminadas = psEliminarPersonas.executeUpdate();
                 System.out.println("Se eliminaron " + personasEliminadas + " personas relacionadas con el evento.");
             }
+            try (PreparedStatement psEliminarBoletos = con.prepareStatement(queryEliminarBoletos)) {
+                psEliminarBoletos.setString(1, nombreEvento);
+                int boletosEliminados = psEliminarBoletos.executeUpdate();
+                System.out.println("Se eliminaron " + boletosEliminados + " boletos relacionados con el evento.");
+            }
+       
+
 
             // Luego eliminar el evento
             String queryEliminarEvento = "DELETE FROM Evento WHERE Nombre = ?";
