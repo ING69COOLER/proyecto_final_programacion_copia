@@ -3,7 +3,6 @@ package co.edu.uniquindio.poo.Boleto;
 import java.io.IOException;
 import java.util.Optional;
 
-import co.edu.uniquindio.poo.editar_Evento.EditarEventoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 

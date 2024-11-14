@@ -10,11 +10,6 @@ import co.edu.uniquindio.poo.Objetos.Persona;
 import co.edu.uniquindio.poo.Objetos.Usuario;
 
 public class DBUtils {
-    // bienvenido(a) al sotano, aca hay clases de agregar evento, usuarios,
-    // personas, que ni el credor sabe usar correctamente, buena suerte entendiendo.
-    // arroz chino pedido el 3 de noviembre numero por si lo necesita profe :
-    // 3206033523
-
     // Única instancia de la clase (Singleton)
     private static DBUtils instancia;
 
@@ -22,7 +17,6 @@ public class DBUtils {
     private DBUtils() {
         // Constructor vacío, si fuera necesario inicializar algo se haría aquí
     }
-
     /*
      * Singleton
      * Método estático para obtener la única instancia de la clase

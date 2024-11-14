@@ -10,7 +10,15 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
 
     private static BuildBaseDeDatos instancia;
 
-    
+     /*
+     * Singleton
+     */
+    public static BuildBaseDeDatos getInstancia() {
+        if (instancia == null) {
+            instancia = new BuildBaseDeDatos();
+        }
+        return instancia;  
+    }
 
     public  void crearSillasVip() {
         String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
@@ -188,15 +196,7 @@ public class BuildBaseDeDatos implements IBuildBaseDeDatos {
     
 
     
-    /*
-     * Singleton
-     */
-    public static BuildBaseDeDatos getInstancia() {
-        if (instancia == null) {
-            instancia = new BuildBaseDeDatos();
-        }
-        return instancia;  
-    }
+   
 
 
 

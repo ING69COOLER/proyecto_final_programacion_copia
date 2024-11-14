@@ -203,11 +203,6 @@ public abstract class BaseEditarEventoController {
         return silla;
     }
 
-    protected void cerrarVentana() {
-        Stage stage = (Stage) txtNombrePersona.getScene().getWindow();
-        stage.close();
-    }
-
     protected double calcularTotalPagar() {
         double totalPagar = costoRegular; // Iniciar con el costo regular del evento
 
@@ -229,4 +224,10 @@ public abstract class BaseEditarEventoController {
     }
 
     protected abstract boolean idPersonaAsignadaEvento();
+
+    protected void cerrarVentana() {
+        Stage stage = (Stage) txtNombrePersona.getScene().getWindow();
+        stage.close();
+    }
 }
+
