@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.Utils;
 import co.edu.uniquindio.poo.Balance.DateBalance.Balance;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
-public class BalanceController   {
+public class BalanceController implements Utils {
     @FXML
     private ResourceBundle resources;
 
@@ -45,6 +46,7 @@ public class BalanceController   {
    
     @FXML
     void exportar(ActionEvent event) {
+        mostrarAlertaExito("Exportando", "Exportando datos a archivo...");
         Balance.getInstance().exportar();
         
     }

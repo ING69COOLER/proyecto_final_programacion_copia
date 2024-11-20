@@ -83,4 +83,13 @@ public  interface  Utils {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    public default void mostrarAlertaExito(String titulo, String mensaje) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+    
 }

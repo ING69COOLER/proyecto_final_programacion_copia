@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -34,9 +35,9 @@
             <Button fx:id="btn_registrar" layoutX="76.0" layoutY="240.0" mnemonicParsing="false" onAction="#registar" prefHeight="40.0" prefWidth="125.0" stylesheets="@styles.css" text="Registrar" />
             <Button fx:id="btn_regresar" layoutX="80.0" layoutY="289.0" mnemonicParsing="false" onAction="#regresar" prefHeight="40.0" prefWidth="118.0" styleClass="buttonRed" stylesheets="@styles.css" text="Regresar" />
             <TextField fx:id="txt_usuario" layoutX="105.0" layoutY="42.0" />
-            <TextField fx:id="txt_contraseña_1" layoutX="105.0" layoutY="76.0" />
-            <TextField fx:id="txt_contraseña_2" layoutX="105.0" layoutY="113.0" />
-            <TextField fx:id="txt_clave_empresarial" layoutX="105.0" layoutY="153.0" />
+            <PasswordField fx:id="txt_contraseña_1" layoutX="105.0" layoutY="75.0" />
+            <PasswordField fx:id="txt_contraseña_2" layoutX="105.0" layoutY="113.0" />
+            <PasswordField fx:id="txt_clave_empresarial" layoutX="105.0" layoutY="152.0" />
          </children>
       </Pane>
    </children>

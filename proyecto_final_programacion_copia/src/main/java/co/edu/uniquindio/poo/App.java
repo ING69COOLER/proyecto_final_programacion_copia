@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import co.edu.uniquindio.poo.dataBase.BuildBaseDeDatos;
 
 import java.io.IOException;
+import java.sql.SQLException;
  
 /**
  * JavaFX App

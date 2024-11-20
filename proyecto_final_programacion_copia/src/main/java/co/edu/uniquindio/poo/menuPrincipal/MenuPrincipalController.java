@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
-public class MenuPrincipalController extends AMenuPrincipal  {
+public class MenuPrincipalController extends AMenuPrincipal {
 
     @FXML
     private ResourceBundle resources;
@@ -70,32 +70,30 @@ public class MenuPrincipalController extends AMenuPrincipal  {
     @FXML
     private void cargarEventos() {
         ArrayList<Evento> eventos = ProxyEvento.getInstance().getEventos();
-       for (Evento evento : eventos) {
-                String nombreEvento = evento.getNombre();
-                int idEvento = evento.getId();
+        for (Evento evento : eventos) {
+            String nombreEvento = evento.getNombre();
+            int idEvento = evento.getId();
 
-                // Crear un botón para cada evento
-                Button eventoBtn = new Button(nombreEvento);
-                eventoBtn.setStyle(
-                        "-fx-background-color: linear-gradient(yellow, #FF8C00);" + // Degradado de blanco a naranja oscuro
-                        "-fx-text-fill: black;" +    // Color de texto blanco
-                        "-fx-font-family: 'Forte';" + // Fuente "Forte"
-                        "-fx-background-radius: 20;" + // Bordes redondeados
-                        "-fx-padding: 10px 20px;" +  // Espaciado interno (alto y ancho)
-                        "-fx-font-size: 14px;" +     // Tamaño de fuente
-                        "-fx-border-radius: 20;"     // Bordes redondeados en el borde exterior
-                    );
+            // Crear un botón para cada evento
+            Button eventoBtn = new Button(nombreEvento);
+            eventoBtn.setStyle(
+                    "-fx-background-color: linear-gradient(yellow, #FF8C00);" + // Degradado de blanco a naranja oscuro
+                            "-fx-text-fill: black;" + // Color de texto blanco
+                            "-fx-font-family: 'Forte';" + // Fuente "Forte"
+                            "-fx-background-radius: 20;" + // Bordes redondeados
+                            "-fx-padding: 10px 20px;" + // Espaciado interno (alto y ancho)
+                            "-fx-font-size: 14px;" + // Tamaño de fuente
+                            "-fx-border-radius: 20;" // Bordes redondeados en el borde exterior
+            );
 
-                
-                eventoBtn.setPrefWidth(200);
-                eventoBtn.setOnAction(e -> editarEvento(idEvento));
+            eventoBtn.setPrefWidth(200);
+            eventoBtn.setOnAction(e -> editarEvento(idEvento));
 
-                // Agregar el botón al VBox
-                vboxEventos.getChildren().add(eventoBtn);
-            }
+            // Agregar el botón al VBox
+            vboxEventos.getChildren().add(eventoBtn);
+        }
     }
 
-    
     @FXML
     void eliminar_evento(ActionEvent event) {
         Optional<Pair<String, String>> result = mostrarDialogoEliminarEvento();
@@ -113,16 +111,21 @@ public class MenuPrincipalController extends AMenuPrincipal  {
             if (eliminarPersonasYEvento(nombreEvento)) {
                 limpiarVistaEventos();
                 cargarEventos();
+                mostrarAlertaExito("Evento eliminado", "El evento ha sido eliminado con exito.");
+            } else {
+                mostrarAlerta("Error", "No se encontró el evento con el nombre: " + nombreEvento);
             }
         });
     }
+
     // Este método se llama al inicializar el controlador
     @FXML
     void initialize() {
-    
+
         cargarEventos(); // Cargar los eventos al abrir la ventana
         iniciarActualizacionAutomatica();
     }
+
     public void limpiarVistaEventos() {
         // Elimina todos los nodos hijos del VBox que contiene los botones de eventos
         vboxEventos.getChildren().clear();
@@ -130,7 +133,6 @@ public class MenuPrincipalController extends AMenuPrincipal  {
 
     public void actualizarResumenSillas() {
         String url = "jdbc:sqlite:proyecto_final_programacion_copia\\src\\main\\java\\co\\edu\\uniquindio\\poo\\dataBase\\DB\\DB.db";
-
 
         try (Connection con = DriverManager.getConnection(url);
                 Statement stmt = con.createStatement();
@@ -155,8 +157,8 @@ public class MenuPrincipalController extends AMenuPrincipal  {
         }
     }
 
-      //Se va
-      public void iniciarActualizacionAutomatica() {
+    // Se va
+    public void iniciarActualizacionAutomatica() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> actualizarResumenSillas()));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

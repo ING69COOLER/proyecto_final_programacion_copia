@@ -163,15 +163,19 @@ public abstract class AMenuPrincipal implements Utils {
                 int eventosEliminados = psEliminarEvento.executeUpdate();
                 if (eventosEliminados > 0) {
                     System.out.println("El evento '" + nombreEvento + "' fue eliminado correctamente.");
+                    mostrarAlertaExito("Evento eliminado", "El evento ha sido eliminado con exito. "+nombreEvento);
                     return true;
                 } else {
                     System.out.println("No se encontró el evento con el nombre: " + nombreEvento);
+                    mostrarAlerta("Error", "No se encontró el evento con el nombre: " + nombreEvento);
+                
                     return false;
                 }
             }
         } catch (Exception e) {
             System.out.println("Error al eliminar el evento: " + e.getMessage());
             e.printStackTrace();
+            mostrarAlerta("Error", "Error al eliminar el evento: " + e.getMessage());
             return false;
         }
     }

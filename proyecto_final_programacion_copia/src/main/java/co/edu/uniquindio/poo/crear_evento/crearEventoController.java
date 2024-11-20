@@ -64,14 +64,19 @@ public class crearEventoController implements Utils {
             }
 
             // Agregar el evento a la base de datos
-            crearEvento(id,nombre, costo, tipoEvento, porcentajeExtra);
+            if(nombre != null && costo != 0 && porcentajeExtra != 0){
+                crearEvento(id,nombre, costo, tipoEvento, porcentajeExtra);
+                mostrarAlertaExito("Evento creado", "El evento ha sido creado con exito.");
 
+            }
             // Redirigir al menú principal
             App.setRoot("menu_principal");
 
         } catch (NumberFormatException e) {
+            mostrarAlerta("Error", "Asegúrate de ingresar números válidos para el costo y el porcentaje.");
             System.out.println("Error: Asegúrate de ingresar números válidos para el costo y el porcentaje.");
         } catch (Exception e) {
+            mostrarAlerta("Error", "Error al crear el evento: " + e.getMessage());
             System.out.println("Error al crear el evento: " + e.getMessage());
         }
     }

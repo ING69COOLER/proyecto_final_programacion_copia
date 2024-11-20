@@ -7,7 +7,7 @@ module co.edu.uniquindio.poo {
     requires com.opencsv;
     requires org.apache.poi.ooxml;
     requires com.google.gson;
-    requires jdk.incubator.vector;
+   
     
   
     
